@@ -5,7 +5,8 @@ const postPerson = (state, response) => {
   state.personList.push(response)
 }
 const deletePerson = (state, response) => {
-  // state.personList.splice(state.personList.indexOf(response), 1)
+  let index = state.personList.findIndex(obj => obj.id === response)
+  state.personList.splice(index, 1)
 }
 const getOnePerson = (state, response) => {
   state.person = response
@@ -18,15 +19,12 @@ const putPerson = (state, response) => {
 const getTotalPage = (state, response) => {
   state.totalPage = response
 }
-
 const getCurrentPage = (state, response) => {
   state.currentPage = response
 }
-
 const getFirstPage = (state, response) => {
   state.firstPage = response
 }
-
 const getLastPage = (state, response) => {
   state.lastPage = response
 }

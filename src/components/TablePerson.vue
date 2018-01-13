@@ -91,7 +91,6 @@
     },
     mounted () {
       this.getAllPerson()
-      // this.getCurrentPage(this.currentPage)
     },
     methods: {
       getAllPerson: function () {

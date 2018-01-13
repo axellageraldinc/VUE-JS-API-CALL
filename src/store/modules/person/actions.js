@@ -4,14 +4,12 @@ const doGetAllPerson = ({commit}) => {
   axios.get(
     '/api/person')
     .then(response => {
-      console.log(JSON.stringify(response.data))
       commit('getAllPerson', response.data.content)
     })
     .catch(error => {
       console.log('Error : ' + error)
     })
 }
-
 const doPostPerson = ({commit}, personData) => {
   axios.post(
     '/api/person', {
@@ -30,19 +28,17 @@ const doPostPerson = ({commit}, personData) => {
       console.log('Error : ' + error)
     })
 }
-
 const doDeletePerson = ({commit}, personId) => {
   axios.delete(
     '/api/person/' + personId, {
     })
     .then(response => {
-      commit('deletePerson', response.data)
+      commit('deletePerson', response.data.id)
     })
     .catch(error => {
       console.log('Error : ' + error)
     })
 }
-
 const doGetOnePerson = ({commit}, personId) => {
   axios.get(
     '/api/person/' + personId)
@@ -53,7 +49,6 @@ const doGetOnePerson = ({commit}, personId) => {
       console.log('Error : ' + error)
     })
 }
-
 const doPutPerson = ({commit}, personData) => {
   axios.put('/api/person/' + personData.id, {
     name: personData.name,
@@ -71,19 +66,16 @@ const doPutPerson = ({commit}, personData) => {
       console.log('Error : ' + error)
     })
 }
-
 const doGetTotalPage = ({commit}) => {
   axios.get(
     '/api/person')
     .then(response => {
-      console.log(JSON.stringify(response.data.totalPages))
       commit('getTotalPage', response.data.totalPages)
     })
     .catch(error => {
       console.log('Error : ' + error)
     })
 }
-
 const doMovePage = ({commit}, pageNumber) => {
   axios.get(
     '/api/person?page=' + pageNumber)
@@ -94,7 +86,6 @@ const doMovePage = ({commit}, pageNumber) => {
       console.log('Error : ' + error)
     })
 }
-
 const doGetCurrentPage = ({commit}, pageNumber) => {
   axios.get(
     '/api/person?page=' + pageNumber)
@@ -105,7 +96,6 @@ const doGetCurrentPage = ({commit}, pageNumber) => {
       console.log('Error : ' + error)
     })
 }
-
 const doGetFirstPage = ({commit}, pageNumber) => {
   axios.get(
     '/api/person?page=' + pageNumber)
@@ -116,7 +106,6 @@ const doGetFirstPage = ({commit}, pageNumber) => {
       console.log('Error : ' + error)
     })
 }
-
 const doGetLastPage = ({commit}, pageNumber) => {
   axios.get(
     '/api/person?page=' + pageNumber)
