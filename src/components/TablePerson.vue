@@ -24,7 +24,7 @@
           </tr>
           </tbody>
         </table>
-        <nav aria-label="Page navigation example" v-if="totalPage > 1">
+        <nav aria-label="Page navigation example" v-if="totalPage >= 1">
           <ul class="pagination">
             <template v-if="firstPage === true">
               <li class="page-item disabled">
@@ -88,6 +88,7 @@
       // makannya dibuat default pageNumber itu 2 supaya ketahuan number currentPage adalah 1 (page awal)
       this.getCurrentPage(2)
       this.getFirstPage(1)
+      this.getLastPage(1)
     },
     mounted () {
       this.getAllPerson()
@@ -114,6 +115,9 @@
       },
       getFirstPage: function (pageNumber) {
         this.$store.dispatch('person/doGetFirstPage', pageNumber)
+      },
+      getLastPage: function (pageNumber) {
+        this.$store.dispatch('person/doGetLastPage', pageNumber)
       }
     }
   }

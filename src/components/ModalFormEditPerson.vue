@@ -25,7 +25,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                  <button @click="putPerson(person.id)" type="submit" class="btn btn-primary" data-dismiss="modal">UPDATE</button>
+                  <button @click="putPerson" type="submit" class="btn btn-primary" data-dismiss="modal">UPDATE</button>
                 </div>
                 <br>
               </div>
@@ -55,7 +55,7 @@
       })
     },
     methods: {
-      putPerson: function (personId) {
+      putPerson: function () {
         this.$store.dispatch('person/doPutPerson', this.person)
       }
     }

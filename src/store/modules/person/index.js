@@ -4,7 +4,12 @@ import actions from './actions'
 
 const state = {
   personList: [],
-  person: '',
+  // personInput dibuat object beserta isinya begini supaya gak error di bagian FormPerson computed personInput
+  person: {
+    name: '',
+    age: '',
+    address: ''
+  },
   totalPage: 0,
   currentPage: 0,
   firstPage: '',

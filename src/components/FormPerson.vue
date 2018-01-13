@@ -21,18 +21,23 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     name: 'form-person',
     data () {
       return {
-        person: {}
       }
     },
     computed: {
+      ...mapGetters({
+        person: 'person/person'
+      })
     },
     methods: {
       postPerson: function () {
         this.$store.dispatch('person/doPostPerson', this.person)
+        this.$store.dispatch('person/doClearPersonInput')
       }
     }
   }

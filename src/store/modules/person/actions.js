@@ -66,6 +66,9 @@ const doPutPerson = ({commit}, personData) => {
       console.log('Error : ' + error)
     })
 }
+const doClearPersonInput = ({commit}) => {
+  commit('clearPersonInput')
+}
 const doGetTotalPage = ({commit}) => {
   axios.get(
     '/api/person')
@@ -123,6 +126,7 @@ export default {
   doDeletePerson,
   doGetOnePerson,
   doPutPerson,
+  doClearPersonInput,
   doGetTotalPage,
   doMovePage,
   doGetCurrentPage,

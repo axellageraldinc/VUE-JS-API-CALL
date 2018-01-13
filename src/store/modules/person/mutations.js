@@ -12,8 +12,14 @@ const getOnePerson = (state, response) => {
   state.person = response
 }
 const putPerson = (state, response) => {
+  let index = state.personList.findIndex(obj => obj.id === response.id)
+  state.personList.splice(index, 1)
+  state.personList.push(response)
   // state.personList.splice(state.personList.indexOf(response), 1)
   // state.personList.push(response)
+}
+const clearPersonInput = (state) => {
+  state.person = ''
 }
 
 const getTotalPage = (state, response) => {
@@ -35,6 +41,7 @@ export default {
   deletePerson,
   getOnePerson,
   putPerson,
+  clearPersonInput,
   getTotalPage,
   getCurrentPage,
   getFirstPage,
