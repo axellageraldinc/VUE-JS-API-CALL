@@ -106,6 +106,28 @@ const doGetCurrentPage = ({commit}, pageNumber) => {
     })
 }
 
+const doGetFirstPage = ({commit}, pageNumber) => {
+  axios.get(
+    '/api/person?page=' + pageNumber)
+    .then(response => {
+      commit('getFirstPage', response.data.first)
+    })
+    .catch(error => {
+      console.log('Error : ' + error)
+    })
+}
+
+const doGetLastPage = ({commit}, pageNumber) => {
+  axios.get(
+    '/api/person?page=' + pageNumber)
+    .then(response => {
+      commit('getLastPage', response.data.last)
+    })
+    .catch(error => {
+      console.log('Error : ' + error)
+    })
+}
+
 export default {
   doGetAllPerson,
   doPostPerson,
@@ -114,5 +136,7 @@ export default {
   doPutPerson,
   doGetTotalPage,
   doMovePage,
-  doGetCurrentPage
+  doGetCurrentPage,
+  doGetFirstPage,
+  doGetLastPage
 }

@@ -6,7 +6,9 @@ const state = {
   personList: [],
   person: '',
   totalPage: 0,
-  currentPage: 0
+  currentPage: 0,
+  firstPage: '',
+  lastPage: ''
 }
 
 export default {

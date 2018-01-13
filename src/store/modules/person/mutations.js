@@ -23,6 +23,14 @@ const getCurrentPage = (state, response) => {
   state.currentPage = response
 }
 
+const getFirstPage = (state, response) => {
+  state.firstPage = response
+}
+
+const getLastPage = (state, response) => {
+  state.lastPage = response
+}
+
 export default {
   getAllPerson,
   postPerson,
@@ -30,5 +38,7 @@ export default {
   getOnePerson,
   putPerson,
   getTotalPage,
-  getCurrentPage
+  getCurrentPage,
+  getFirstPage,
+  getLastPage
 }
