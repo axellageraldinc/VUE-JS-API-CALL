@@ -3,7 +3,10 @@ import mutations from './mutations'
 import actions from './actions'
 
 const state = {
-  personList: []
+  personList: [],
+  person: '',
+  totalPage: 0,
+  currentPage: 0
 }
 
 export default {
