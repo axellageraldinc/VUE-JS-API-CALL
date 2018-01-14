@@ -25,7 +25,7 @@ const doPostPerson = ({commit}, personData) => {
       commit('postPerson', response.data)
     })
     .catch(error => {
-      console.log('Error : ' + error)
+      console.log(error.response.data.errors)
     })
 }
 const doDeletePerson = ({commit}, personId) => {
@@ -65,9 +65,6 @@ const doPutPerson = ({commit}, personData) => {
     .catch(error => {
       console.log('Error : ' + error)
     })
-}
-const doClearPersonInput = ({commit}) => {
-  commit('clearPersonInput')
 }
 const doGetTotalPage = ({commit}) => {
   axios.get(
@@ -126,7 +123,6 @@ export default {
   doDeletePerson,
   doGetOnePerson,
   doPutPerson,
-  doClearPersonInput,
   doGetTotalPage,
   doMovePage,
   doGetCurrentPage,
