@@ -11,6 +11,7 @@
             <th scope="col">Address</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
+            <th scope="col">Vehicle</th>
           </tr>
           </thead>
           <tbody>
@@ -19,8 +20,15 @@
             <td>{{ item.name }}</td>
             <td>{{ item.age }}</td>
             <td>{{ item.address }}</td>
-            <td><button @click="getOnePerson(item.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-form-edit-person">Edit</button></td>
-            <td><button type="button" class="btn btn-primary" @click="deletePerson(item.id)">Delete</button></td>
+            <td>
+              <button @click="getOnePerson(item.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-form-edit-person">Edit</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-primary" @click="deletePerson(item.id)">Delete</button>
+            </td>
+            <td>
+              <button @click="getAllVehicleOfAPerson(item.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-vehicle">View Vehicle</button>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -62,17 +70,20 @@
         </nav>
       </div>
       <ModalFormEditPerson/>
+      <ModalVehicle/>
     </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
-  import ModalFormEditPerson from '@/components/ModalFormEditPerson'
+  import ModalFormEditPerson from '@/components/person/ModalFormEditPerson'
+  import ModalVehicle from '@/components/vehicle/ModalVehicle'
 
   export default {
     name: 'table-person',
     components: {
-      ModalFormEditPerson
+      ModalFormEditPerson,
+      ModalVehicle
     },
     computed: {
       ...mapGetters({
@@ -103,6 +114,9 @@
       },
       getOnePerson: function (personId) {
         this.$store.dispatch('person/doGetOnePerson', personId)
+      },
+      getAllVehicleOfAPerson: function (personId) {
+        this.$store.dispatch('vehicle/doGetAllVehicleOfAPerson', personId)
       },
       movePage: function (pageNumber) {
         this.$store.dispatch('person/doMovePage', pageNumber)

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-    import FormPerson from '@/components/FormPerson'
-    import TablePerson from '@/components/TablePerson'
+    import FormPerson from '@/components/person/FormPerson'
+    import TablePerson from '@/components/person/TablePerson'
 
     export default {
       name: 'home',
