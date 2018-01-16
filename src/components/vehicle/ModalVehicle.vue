@@ -4,12 +4,19 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Vehicles</h5>
+              <h5 class="modal-title">Vehicles {{ name }}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
+              <h6>{{ name }}</h6>
+              <!--<div v-for="data in item">-->
+                <!--<h6>{{ data.id }}</h6>-->
+                <!--<h6>{{ data.name }}</h6>-->
+                <!--<h6>{{ data.address }}</h6>-->
+              <!--</div>-->
+              <FormVehicle/>
               <TableVehicle/>
             </div>
             <div class="modal-footer">
@@ -22,13 +29,24 @@
 </template>
 
 <script>
+  import FormVehicle from '@/components/vehicle/FormVehicle'
   import TableVehicle from '@/components/vehicle/TableVehicle'
 
   export default {
     name: 'modal-vehicle',
     components: {
+      FormVehicle,
       TableVehicle
-    }
+    },
+    props: ['name']
+    // props: {
+    //   name: ''
+    //   // item: {
+    //   //   id: 0,
+    //   //   name: '',
+    //   //   address: ''
+    //   // }
+    // }
   }
 </script>
 

@@ -21,7 +21,7 @@
             <td>{{ item.age }}</td>
             <td>{{ item.address }}</td>
             <td>
-              <button @click="getOnePerson(item.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-form-edit-person">Edit</button>
+              <button @click="showModalEditPerson(item.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-form-edit-person">Edit</button>
             </td>
             <td>
               <button type="button" class="btn btn-primary" @click="deletePerson(item.id)">Delete</button>
@@ -69,8 +69,8 @@
           </ul>
         </nav>
       </div>
-      <ModalFormEditPerson/>
-      <ModalVehicle/>
+      <ModalFormEditPerson v-bind:person="person"/>
+      <ModalVehicle v-bind:name="name"/>
     </div>
 </template>
 
@@ -78,9 +78,21 @@
   import { mapGetters } from 'vuex'
   import ModalFormEditPerson from '@/components/person/ModalFormEditPerson'
   import ModalVehicle from '@/components/vehicle/ModalVehicle'
+  import axios from 'axios'
 
   export default {
     name: 'table-person',
+    data () {
+      return {
+        name: '',
+        person: {
+          id: 0,
+          name: '',
+          age: 0,
+          address: ''
+        }
+      }
+    },
     components: {
       ModalFormEditPerson,
       ModalVehicle
@@ -112,11 +124,21 @@
       deletePerson: function (personId) {
         this.$store.dispatch('person/doDeletePerson', personId)
       },
-      getOnePerson: function (personId) {
-        this.$store.dispatch('person/doGetOnePerson', personId)
+      showModalEditPerson: function (personId) {
+        axios.get(
+          '/api/person/' + personId)
+          .then(response => {
+            this.person = response.data
+            console.log(JSON.stringify(response.data))
+          })
+          .catch(error => {
+            console.log('Error : ' + error)
+          })
+        // this.$store.dispatch('person/doGetOnePerson', personId)
       },
       getAllVehicleOfAPerson: function (personId) {
-        this.$store.dispatch('vehicle/doGetAllVehicleOfAPerson', personId)
+        this.name = personId
+        // this.$store.dispatch('vehicle/doGetAllVehicleOfAPerson', personId)
       },
       movePage: function (pageNumber) {
         this.$store.dispatch('person/doMovePage', pageNumber)

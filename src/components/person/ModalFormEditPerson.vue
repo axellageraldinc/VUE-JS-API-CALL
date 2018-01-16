@@ -40,19 +40,19 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
   export default {
     name: 'modal-form-edit-person',
     data () {
       return {
       }
     },
-    components: {
-    },
-    computed: {
-      ...mapGetters({
-        person: 'person/person'
-      })
+    props: {
+      person: {
+        id: Number,
+        name: String,
+        age: Number,
+        address: String
+      }
     },
     methods: {
       putPerson: function () {
