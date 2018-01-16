@@ -5,7 +5,6 @@ const doGetAllVehicleOfAPerson = ({commit}, personId) => {
     '/api/person/' + personId + '/vehicle')
     .then(response => {
       commit('getAllVehicleOfAPerson', response.data)
-      console.log(JSON.stringify(response.data))
     })
     .catch(error => {
       console.log('Error : ' + error)
@@ -34,9 +33,25 @@ const doDeleteVehicleOfAPerson = ({commit}, vehicleData) => {
       console.log('Error : ' + error)
     })
 }
+const doPutVehicleOfAPerson = ({commit}, vehicleData) => {
+  axios.put('/api/person/' + vehicleData.personId + '/vehicle/' + vehicleData.vehicleId, {
+    vehicle: vehicleData.vehicle
+  }, {
+    headers: {
+      'Content-type': 'application/json'
+    }
+  })
+    .then(response => {
+      commit('putVehicleOfAPerson', response.data)
+    })
+    .catch(error => {
+      console.log('Error : ' + error)
+    })
+}
 
 export default {
   doGetAllVehicleOfAPerson,
   doPostVehicleOfAPerson,
-  doDeleteVehicleOfAPerson
+  doDeleteVehicleOfAPerson,
+  doPutVehicleOfAPerson
 }

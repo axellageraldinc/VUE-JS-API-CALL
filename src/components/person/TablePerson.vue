@@ -36,7 +36,7 @@
           <ul class="pagination">
             <template v-if="firstPage === true">
               <li class="page-item disabled">
-                <a class="page-link" @click="movePage(currentPage-1)">Previous</a>
+                <a class="page-link" @click="movePage(currentPage)">Previous</a>
               </li>
             </template>
             <template v-else>
@@ -58,7 +58,7 @@
             </template>
             <template v-if="lastPage === true">
               <li class="page-item disabled">
-                <a class="page-link" @click="movePage(currentPage+1)">Next</a>
+                <a class="page-link" @click="movePage(currentPage)">Next</a>
               </li>
             </template>
             <template v-else>
@@ -130,12 +130,10 @@
           '/api/person/' + personId)
           .then(response => {
             this.person = response.data
-            console.log(JSON.stringify(response.data))
           })
           .catch(error => {
             console.log('Error : ' + error)
           })
-        // this.$store.dispatch('person/doGetOnePerson', personId)
       },
       showVehicleModal: function (personId) {
         this.clickedPersonId = personId
