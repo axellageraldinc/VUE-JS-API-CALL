@@ -14,7 +14,7 @@
           <th scope="row">{{ vehicle.id }}</th>
           <td>{{ vehicle.vehicle }}</td>
           <td><button type="button" class="btn btn-primary">Edit</button></td>
-          <td><button type="button" class="btn btn-primary">Delete</button></td>
+          <td><button @click="deleteVehicleOfAPerson(personId, vehicle.id)" type="button" class="btn btn-primary">Delete</button></td>
         </tr>
         </tbody>
       </table>
@@ -26,6 +26,14 @@
 
   export default {
     name: 'table-vehicle',
+    data () {
+      return {
+        vehicleData: {
+          personId: 0,
+          vehicleId: ''
+        }
+      }
+    },
     props: {
       personId: Number
       // vehicleList: [Array]
@@ -34,6 +42,15 @@
       ...mapGetters({
         vehicleList: 'vehicle/vehicleList'
       })
+    },
+    methods: {
+      deleteVehicleOfAPerson: function (personId, vehicleId) {
+        this.vehicleData = {
+          personId: personId,
+          vehicleId: vehicleId
+        }
+        this.$store.dispatch('vehicle/doDeleteVehicleOfAPerson', this.vehicleData)
+      }
     }
   }
 </script>

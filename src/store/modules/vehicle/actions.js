@@ -23,8 +23,20 @@ const doPostVehicleOfAPerson = ({commit}, vehicleData) => {
       console.log('Error : ' + error)
     })
 }
+const doDeleteVehicleOfAPerson = ({commit}, vehicleData) => {
+  axios.delete(
+    '/api/person/' + vehicleData.personId + '/vehicle/' + vehicleData.vehicleId, {
+    })
+    .then(response => {
+      commit('deleteVehicleOfAPerson', response.data.id)
+    })
+    .catch(error => {
+      console.log('Error : ' + error)
+    })
+}
 
 export default {
   doGetAllVehicleOfAPerson,
-  doPostVehicleOfAPerson
+  doPostVehicleOfAPerson,
+  doDeleteVehicleOfAPerson
 }
