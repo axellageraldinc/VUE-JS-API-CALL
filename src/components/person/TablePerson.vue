@@ -27,7 +27,7 @@
               <button type="button" class="btn btn-primary" @click="deletePerson(item.id)">Delete</button>
             </td>
             <td>
-              <button @click="getAllVehicleOfAPerson(item.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-vehicle">View Vehicle</button>
+              <button @click="showVehicleModal(item.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-vehicle">View Vehicle</button>
             </td>
           </tr>
           </tbody>
@@ -70,7 +70,7 @@
         </nav>
       </div>
       <ModalFormEditPerson v-bind:person="person"/>
-      <ModalVehicle v-bind:name="name"/>
+      <ModalVehicle v-bind:personId="clickedPersonId" v-bind:vehicleList="vehicleList"/>
     </div>
 </template>
 
@@ -90,7 +90,12 @@
           name: '',
           age: 0,
           address: ''
-        }
+        },
+        clickedPersonId: 0,
+        vehicleList: [{
+          id: 0,
+          vehicle: ''
+        }]
       }
     },
     components: {
@@ -136,9 +141,16 @@
           })
         // this.$store.dispatch('person/doGetOnePerson', personId)
       },
-      getAllVehicleOfAPerson: function (personId) {
-        this.name = personId
-        // this.$store.dispatch('vehicle/doGetAllVehicleOfAPerson', personId)
+      showVehicleModal: function (personId) {
+        this.clickedPersonId = personId
+        axios.get(
+          '/api/person/' + personId + '/vehicle')
+          .then(response => {
+            this.vehicleList = response.data
+          })
+          .catch(error => {
+            console.log('Error : ' + error)
+          })
       },
       movePage: function (pageNumber) {
         this.$store.dispatch('person/doMovePage', pageNumber)

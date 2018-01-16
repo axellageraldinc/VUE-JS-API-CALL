@@ -11,9 +11,11 @@ const doGetAllVehicleOfAPerson = ({commit}, personId) => {
       console.log('Error : ' + error)
     })
 }
-const doPostVehicleOfAPerson = ({commit}, personId, vehicleData) => {
+const doPostVehicleOfAPerson = ({commit}, vehicleData) => {
+  console.log(vehicleData.personId)
+  console.log(vehicleData.vehicle)
   axios.post(
-    '/api/person/' + personId + '/vehicle', {
+    '/api/person/' + vehicleData.personId + '/vehicle', {
       vehicle: vehicleData.vehicle
     })
     .then(response => {

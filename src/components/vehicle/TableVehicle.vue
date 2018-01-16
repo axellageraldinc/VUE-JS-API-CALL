@@ -22,17 +22,11 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-
   export default {
     name: 'table-vehicle',
-    computed: {
-      ...mapGetters({
-        vehicleList: 'vehicle/vehicleList'
-      })
-    },
-    methods: {
-
+    props: {
+      personId: Number,
+      vehicleList: [Array]
     }
   }
 </script>

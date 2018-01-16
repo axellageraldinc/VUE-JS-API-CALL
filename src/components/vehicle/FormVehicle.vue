@@ -1,10 +1,10 @@
 <template>
     <div>
       <div class="form-vehicle">
-        <form>
+        <form @submit.prevent="postVehicleOfAPerson">
           <div class="form-group">
             <label>Vehicle Name</label>
-            <input v-model="vehicle.vehicle" type="text" class="form-control" placeholder="Enter vehicle name">
+            <input v-model="vehicleData.vehicle" type="text" class="form-control" placeholder="Enter vehicle name">
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary">ADD NEW VEHICLE</button>
@@ -16,26 +16,23 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-
   export default {
     name: 'form-vehicle',
     data () {
       return {
-        vehicle: {
-          id: '',
+        vehicleData: {
+          personId: 0,
           vehicle: ''
         }
       }
     },
-    computed: {
-      ...mapGetters({
-      })
+    props: {
+      personId: Number
     },
     methods: {
-      postVehicleOfAPerson: function (personData) {
-        console.log(personData)
-        this.$store.dispatch('vehicle/doPostVehicleOfAPerson', personData, this.vehicle)
+      postVehicleOfAPerson: function () {
+        this.vehicleData.personId = this.personId
+        this.$store.dispatch('vehicle/doPostVehicleOfAPerson', this.vehicleData)
       }
     }
   }
