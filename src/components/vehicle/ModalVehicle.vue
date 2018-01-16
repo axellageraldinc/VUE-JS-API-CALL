@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
               <FormVehicle v-bind:personId="personId"/>
-              <TableVehicle/>
+              <TableVehicle v-bind:personId="personId"/>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -33,8 +33,7 @@
       TableVehicle
     },
     props: {
-      personId: Number,
-      vehicleList: [Array]
+      personId: Number
     }
   }
 </script>

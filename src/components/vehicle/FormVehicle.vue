@@ -33,6 +33,10 @@
       postVehicleOfAPerson: function () {
         this.vehicleData.personId = this.personId
         this.$store.dispatch('vehicle/doPostVehicleOfAPerson', this.vehicleData)
+        this.vehicleData = {
+          personId: 0,
+          vehicle: ''
+        }
       }
     }
   }

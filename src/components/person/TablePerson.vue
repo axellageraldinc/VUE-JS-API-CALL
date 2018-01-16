@@ -70,7 +70,7 @@
         </nav>
       </div>
       <ModalFormEditPerson v-bind:person="person"/>
-      <ModalVehicle v-bind:personId="clickedPersonId" v-bind:vehicleList="vehicleList"/>
+      <ModalVehicle v-bind:personId="clickedPersonId"/>
     </div>
 </template>
 
@@ -91,11 +91,7 @@
           age: 0,
           address: ''
         },
-        clickedPersonId: 0,
-        vehicleList: [{
-          id: 0,
-          vehicle: ''
-        }]
+        clickedPersonId: 0
       }
     },
     components: {
@@ -146,7 +142,7 @@
         axios.get(
           '/api/person/' + personId + '/vehicle')
           .then(response => {
-            this.vehicleList = response.data
+            this.$store.commit('vehicle/getAllVehicleOfAPerson', response.data)
           })
           .catch(error => {
             console.log('Error : ' + error)

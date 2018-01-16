@@ -44,18 +44,6 @@
           age: 0,
           address: ''
         }
-        // if (this.postPersonError.length < 1) {
-        //   console.log('validation success')
-        // } else {
-        //   console.log('validation failed')
-        //   // for (var error in this.postPersonError) {
-        //   //   if (this.postPersonError[error].field === 'name') {
-        //   //     this.$refs.errorName.innerHTML = this.postPersonError[error].defaultMessage
-        //   //   } else if (this.postPersonError[error].field === 'age') {
-        //   //     this.$refs.errorAge.innerHTML = this.postPersonError[error].defaultMessage
-        //   //   }
-        //   // }
-        // }
       }
     }
   }
